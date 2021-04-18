@@ -1,0 +1,42 @@
+var select_location=ee.Geometry.Polygon([
+  [139.54990890996453,35.653582525667964],
+  [139.59385422246453,35.653582525667964],
+  [139.59385422246453,35.693743953169324],
+  [139.54990890996453,35.693743953169324],
+  [139.54990890996453,35.653582525667964]]);
+
+
+var ROI=ee.Geometry.Polygon([
+  [138.96636456361483,35.43377142581984],
+  [139.97161358705233,35.43377142581984],
+  [139.97161358705233,35.83001330450479],
+  [138.96636456361483,35.83001330450479],
+  [138.96636456361483,35.43377142581984]]);
+
+
+var bands=["B2","B3","B4","B5","B8","B11","B12"];
+var start="2020-01-02";
+var end="2020-01-04";
+
+var S2Image=imageCollection
+.filterDate(start,end)
+.filterBounds(select_location)
+.sort("CLOUD_COVER")
+.select(bands);
+
+var leastCloudImage=S2Image.first().clip(ROI);
+var visParams={bands:["B4","B3","B2"],max:3000};
+Map.addLayer(leastCloudImage,visParams);
+
+var date=leastCloudImage.date().format('yyyy-MM-dd').getInfo();
+
+Export.image.toDrive({
+  image:leastCloudImage,
+  description:"sentinel2_"+date,
+  region:ROI,
+  fileFormat:"GeoTIFF",
+  scale:10,
+  formatOptions: {
+    cloudOptimized: true
+  }
+});
