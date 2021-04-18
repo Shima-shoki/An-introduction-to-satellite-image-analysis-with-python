@@ -18,4 +18,4 @@ The contents are:
 - How to specify the location on a numpy array from a geographic coordinate of a point.
 - How to show a time-series change of NDVI at a specific location
 
-The satellite images are too large to upload, so I added a code for the google earth engine to download sentinel-2 images as geotiff files that are used in the tutorial. Please kindly modify some of the parameters in the download code to find the target images you're looking for.
+The satellite images are too large to upload, so I added a code for the google earth engine (GEE) to download sentinel-2 images as geotiff files that are used in the tutorial. Please kindly modify some of the parameters in the GEE download code to find the target images you're looking for.
