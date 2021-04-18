@@ -12,7 +12,7 @@ The contents are:
 ## Introduction 3:
 - How to clip an image by a rectangular shape of ROI
 - How to resample an image to a target resolution
-- HHow to calculate and create a principal component (PC) based image
+- How to calculate and create a principal component (PC) based image
 ## Introduction 4:
 - How to read multiple satellite images
 - How to specify the location on a numpy array from a geographic coordinate of a point.
